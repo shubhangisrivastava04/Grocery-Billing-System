@@ -1,59 +1,66 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-int main()
-{
-    printf("Welcome!\n");
-    printf("Please enter Customer Details:\n");
+
+struct Item {
+    char name[100];
+    int quantity;
+    float price;
+};
+
+int main() {
 
     char name[100];
-    int number;
-    
-    customer_entry(name); 
-    number=mob_no();
-    
+    char user_name[100];
+    int number; 
 
-    int option=0;
-    printf("Please Enter Item Details:\n");
-    
-    char itname[100][100];
-    int itqty[100];
-    float itprice[100];
-    int num_items=0;
+    printf("Welcome!\n");
+    printf("Login:\n");
 
-    while(option!=3)
-    {
+    username(user_name);
+    strcpy(name, user_name); 
+    
+    char pin[50];
+    password(pin);
+
+    number = mob_no();
+
+    int option = 0;
+    printf("Please select an Option: \n");
+
+
+    struct Item *items = (struct Item *)malloc(100 * sizeof(struct Item));
+    int num_items = 0;
+
+    while (option != 3) {
         printf("1.Item Details Entry\n2.Bill all Items\n3.Exit\n");
         printf("Enter your choice: \n");
-        scanf("%d",&option);
+        scanf("%d", &option);
 
-        switch (option)
-        {
+        switch (option) {
             case 1: 
-            
-            item_name(itname[num_items]);
-            itqty[num_items]=item_quantity(&itqty[num_items]);
-            itprice[num_items]=item_price(&itprice[num_items]);
-            num_items++; 
-            break;
+                printf("Please Enter Item Details:\n");
+                item_name(items[num_items].name);
+                items[num_items].quantity = item_quantity(&items[num_items].quantity);
+                items[num_items].price = item_price(&items[num_items].price);
+                num_items++; 
+                break;
 
             case 2: 
-            
-            generate_bill(name,number,itname,itqty,itprice,num_items);
-            break;
+                generate_bill(name, number, items, num_items);
+                break;
 
             case 3:
-
-            printf("Exiting...\n");
-            break;
+                printf("Exiting...\n");
+                break;
 
             default:
-
-            printf("Invalid option. Please choose a valid option.\n");
-            break;
-
+                printf("Invalid option. Please choose a valid option.\n");
+                break;
         }
-
     }    
 
+    free(items);
     return 0;
 }
