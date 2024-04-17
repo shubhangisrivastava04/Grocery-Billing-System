@@ -1,6 +1,13 @@
 #include <stdio.h>
 
-void generate_bill(char customer_name[], int customer_mob, char item_names[][100], int item_quantities[], float item_prices[], int num_items)
+struct Item
+{
+    char name[100];
+    int quantity;
+    float price;
+};
+
+void generate_bill(char customer_name[], int customer_mob, struct Item items[], int num_items)
  {
     int i;
     float total = 0;
@@ -19,9 +26,9 @@ void generate_bill(char customer_name[], int customer_mob, char item_names[][100
 
     for (i = 0; i < num_items; i++)
     {
-        total += item_quantities[i] * item_prices[i];
-        float item_total=item_quantities[i] * item_prices[i];
-        printf("%s\t%d\t\t%.2f\t%.2f\n", item_names[i], item_quantities[i], item_prices[i],item_total);  
+        total += items[i].quantity * items[i].price;
+        float item_total=items[i].quantity * items[i].price;
+        printf("%s\t%d\t\t%.2f\t%.2f\n", items[i].name, items[i].quantity, items[i].price, item_total);  
     }
 
     printf("-----------------------------------------\n");
@@ -34,4 +41,3 @@ void generate_bill(char customer_name[], int customer_mob, char item_names[][100
     printf("-----------------------------------------\n");
 
 }
-
