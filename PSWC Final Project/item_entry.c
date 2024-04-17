@@ -3,7 +3,7 @@
 void item_name(char item[100])
 {
     printf("Enter Item Name: ");
-    scanf("%s", item);  
+    scanf("%s", item); 
 }
 
 int item_quantity(int *quantity)
