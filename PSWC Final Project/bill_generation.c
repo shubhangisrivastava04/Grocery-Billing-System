@@ -7,8 +7,8 @@ struct Item
     float price;
 };
 
-void generate_bill(char customer_name[], int customer_mob, struct Item items[], int num_items)
- {
+void generate_bill(char customer_name[], char customer_mob[10], struct Item items[], int num_items)
+{
     int i;
     float total = 0;
 
@@ -18,7 +18,7 @@ void generate_bill(char customer_name[], int customer_mob, struct Item items[], 
     printf("\t\t  BILL\t\n");
 
     printf("-----------------------------------------\n");
-    printf("Customer Name: %s\nMobile No.: %d\n", customer_name, customer_mob);
+    printf("Customer Name: %s\nMobile No.: %s\n", customer_name, customer_mob);
     printf("-----------------------------------------\n");
 
     printf("Item\tQuantity\tPrice\tItem Total\n");
@@ -38,6 +38,6 @@ void generate_bill(char customer_name[], int customer_mob, struct Item items[], 
     total=total+(total*0.18);
 
     printf("Total with GST: %.2f\n",total);
-    printf("-----------------------------------------\n");
+    printf("-----------------------------------------\n\n");
 
 }
